@@ -111,7 +111,7 @@ public class ParkingService {
         try {
             List<Vehicle> vehicles = parkingLot.getParkedVehiclesWithColour(colour);
             if(vehicles!=null){
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new StringBuilder("\n" +colour + " : ");
                 vehicles.stream().forEach(t-> sb.append(Util.getParkingSlotIdFromVehicle(t)+","));
                 System.out.println(sb.toString());
             }
@@ -131,7 +131,7 @@ public class ParkingService {
         try {
             List<Vehicle> vehicles = parkingLot.getParkedVehiclesWithColour(colour);
             if(vehicles!=null){
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new StringBuilder("\n" +colour + " : ");
                 vehicles.stream().forEach(t-> sb.append(t.getRegistrationNo()+","));
                 System.out.println(sb.toString());
             }
@@ -149,7 +149,7 @@ public class ParkingService {
 
     public void printAllTickets(){
         Collection<ParkingTicket> parkingTickets = parkingLot.getAllParkingTickets();
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("\n\n\n\nParking tickets : \n");
         parkingTickets.stream().forEach(t-> sb.append(t.toString()+"\n"));
         System.out.println(sb.toString());
     }

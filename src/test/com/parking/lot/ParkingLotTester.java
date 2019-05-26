@@ -13,11 +13,12 @@ public class ParkingLotTester {
         parkingService = ParkingService.getInstance(2, 8, 8, 4);
         Random random = new Random();
         String prefix = "KA-01-HH-";
-        String colour = "WHITE";
+        String[] colourArray = {"WHITE","Brown","Red","Blue","Grey"};
         for (int i = 0; i < 150; i++) {
             int gateNo = random.nextInt(4)+1;
+            int colourId = random.nextInt(colourArray.length);
             System.out.println("Gate no : " +gateNo);
-            parkingService.park(prefix+i, colour, gateNo);
+            parkingService.park(prefix+i, colourArray[colourId], gateNo);
             if(i<64)
                 parkingService.statusOfParkingFloor(0);
             else
@@ -33,9 +34,10 @@ public class ParkingLotTester {
         parkingService.leave(6000);
         parkingService.printSlotForVehicleNo("KA-01-HH-20");
         parkingService.printSlotForVehicleNo("KA-01-HH-155");
-        parkingService.printAllSlotsWithColour("WHITE");
-        parkingService.printAllVehiclesWithColour("WHite");
-        parkingService.printAllVehiclesWithColour("Brown");
+        for (int i = 0; i < colourArray.length; i++) {
+            parkingService.printAllVehiclesWithColour(colourArray[i]);
+            parkingService.printAllSlotsWithColour(colourArray[i]);
+        }
         parkingService.printAllTickets();
     }
 
