@@ -9,25 +9,26 @@ import java.util.TreeSet;
 public class EastGateParkingHandler extends EntryGateParkingHandler {
 
     @Override
-    public ParkingSlot park(ParkingSlot[][] parkingSlots, Vehicle vehicle, TreeSet<Integer> availableDistance, int length, int width) {
-        if(isDoubleInitialPoint(length)){
-            return handleWithDoubleInitialPoint(parkingSlots, vehicle, availableDistance, length, width);
+    public ParkingSlot park(ParkingSlot[][] parkingSlots, Vehicle vehicle, int length, int width) {
+        int maxDistance = (length-1)/2 +width-1;
+        if(isDoubleInitialPoint(width)){
+            return handleWithDoubleInitialPoint(parkingSlots, vehicle, length, width, maxDistance);
         }
         else {
-            return handleWithSingleInitialPoint(parkingSlots, vehicle, availableDistance, length, width);
+            return handleWithSingleInitialPoint(parkingSlots, vehicle, length, width, maxDistance);
         }
     }
 
-    private ParkingSlot handleWithSingleInitialPoint(ParkingSlot[][] parkingSlots, Vehicle vehicle, TreeSet<Integer> availableDistance, int length, int width) {
+    private ParkingSlot handleWithSingleInitialPoint(ParkingSlot[][] parkingSlots, Vehicle vehicle, int length, int width, int maxDistance) {
         int entryPointX1=length/2;
         int entryPointY1=width-1;
 
         ParkingSlot parkingSlot = null;
-        int distance = -1;
+        int distance = 0;
 
         outer:
-        while (parkingSlot==null && !availableDistance.isEmpty()){
-            distance = availableDistance.first();
+        while (parkingSlot==null && distance<=maxDistance){
+
             int x = entryPointX1-distance;
             int y = entryPointY1;
             do{
@@ -47,24 +48,24 @@ public class EastGateParkingHandler extends EntryGateParkingHandler {
                 x--;
                 y--;
             }while (y>entryPointY1-distance);
-            removeDistance(availableDistance, distance);
+            distance++;
         }
 
         return parkingSlot;
     }
 
-    private ParkingSlot handleWithDoubleInitialPoint(ParkingSlot[][] parkingSlots, Vehicle vehicle, TreeSet<Integer> availableDistance, int length, int width) {
+    private ParkingSlot handleWithDoubleInitialPoint(ParkingSlot[][] parkingSlots, Vehicle vehicle, int length, int width, int maxDistance) {
         int entryPointX1=length/2-1;
         int entryPointY1=width-1;
         int entryPointX2=length/2;
         int entryPointY2=width-1;
 
         ParkingSlot parkingSlot = null;
-        int distance = -1;
+        int distance = 0;
 
         outer:
-        while (parkingSlot==null && !availableDistance.isEmpty()){
-            distance = availableDistance.first();
+        while (parkingSlot==null && distance<=maxDistance){
+
             int x = entryPointX1-distance;
             int y = entryPointY1;
             do{
@@ -84,7 +85,7 @@ public class EastGateParkingHandler extends EntryGateParkingHandler {
                 x--;
                 y--;
             }while (y>=entryPointY2-distance);
-            removeDistance(availableDistance, distance);
+            distance++;
         }
 
         return parkingSlot;

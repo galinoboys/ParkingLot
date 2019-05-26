@@ -15,7 +15,7 @@ public abstract class EntryGateParkingHandler {
         this.parkingTicketData = ParkingTicketData.getInstance();
     }
 
-    public abstract ParkingSlot park(ParkingSlot[][] parkingSlots, Vehicle vehicle, TreeSet<Integer> availableDistance, int length, int width);
+    public abstract ParkingSlot park(ParkingSlot[][] parkingSlots, Vehicle vehicle, int length, int width);
 
     protected ParkingSlot getParkingSlot(ParkingSlot[][] parkingSlots, Vehicle vehicle, int length, int width, int x, int y) {
         ParkingSlot parkingSlot = null;
@@ -41,10 +41,6 @@ public abstract class EntryGateParkingHandler {
             }
         }
         return parkingSlot;
-    }
-
-    protected void removeDistance(TreeSet<Integer> availableDistance, int distance) {
-        availableDistance.remove(distance);
     }
 
     protected boolean isDoubleInitialPoint(int length){

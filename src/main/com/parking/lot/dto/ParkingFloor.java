@@ -17,7 +17,6 @@ public class ParkingFloor {
 
     private ParkingSlot[][] parkingSlots;
     private EntryGate[] entryGates;
-    private final List<TreeSet<Integer>> availableDistances;
     private EntryGateHandlerFactory factory;
 
     public ParkingFloor(int floorNo, int length, int width, int noOfGates) {
@@ -39,22 +38,6 @@ public class ParkingFloor {
         for (int i = 0; i < noOfGates; i++) {
             entryGates[i] = new EntryGate(i+1, this.length, this.width);
         }
-        availableDistances = new ArrayList<>(noOfGates);
-        for (int gateNo = 0; gateNo < noOfGates; gateNo++) {
-            TreeSet<Integer> availableDis = new TreeSet<Integer>();
-            if(gateNo%2==0){
-                for (int i = 0; i < length+(width-1)/2; i++) {
-                    availableDis.add(i);
-                }
-            }
-            else{
-                for (int i = 0; i < (length-1)/2 +width; i++) {
-                    availableDis.add(i);
-                }
-            }
-            availableDistances.add(gateNo, availableDis);
-        }
-
         factory = new EntryGateHandlerFactory();
     }
 
@@ -65,7 +48,7 @@ public class ParkingFloor {
     }
 
     public ParkingSlot park(Vehicle vehicle, int gateNo) {
-        ParkingSlot parkingSlot = factory.getHandler(gateNo).park(parkingSlots, vehicle, availableDistances.get(gateNo-1), length, width);
+        ParkingSlot parkingSlot = factory.getHandler(gateNo).park(parkingSlots, vehicle, length, width);
         if(parkingSlot!=null)
             incrementUsedCapacity();
         return parkingSlot;
@@ -116,13 +99,9 @@ public class ParkingFloor {
                     vehicle.leave();
                 }
                 decrementUsedCapacity();
-                updateAvailableDistances(x,y);
             }
         }
         return true;
-    }
-
-    private void updateAvailableDistances(int i, int j) {
     }
 
     @Override

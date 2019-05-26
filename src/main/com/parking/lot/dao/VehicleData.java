@@ -6,10 +6,23 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class VehicleData {
+
+    private static VehicleData vehicleData;
+
     private Map<String, Vehicle> vehicleMap;
     private Map<String, List<Vehicle>> colourWiseVehicleMap;
 
-    public VehicleData(){
+    public static VehicleData getInstance(){
+        if(vehicleData==null){
+            synchronized (VehicleData.class){
+                if(vehicleData==null)
+                    vehicleData = new VehicleData();
+            }
+        }
+        return vehicleData;
+    }
+
+    private VehicleData(){
         vehicleMap = new HashMap<>();
         colourWiseVehicleMap = new HashMap<>();
     }

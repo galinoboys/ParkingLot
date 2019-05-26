@@ -4,6 +4,7 @@ import com.parking.lot.dto.*;
 import com.parking.lot.exception.ParkingLotException;
 import com.parking.lot.utils.Constants;
 import com.parking.lot.utils.Util;
+import com.parking.lot.validator.ParkingLotValidator;
 
 import java.util.Collection;
 import java.util.List;
@@ -15,6 +16,7 @@ public class ParkingService {
     private ParkingLot parkingLot;
 
     public static ParkingService getInstance(int noOfFloors, int length, int width, int noOfGates){
+        ParkingLotValidator.validateParkingLotInitializationFactor(noOfFloors, length, width, noOfGates);
         if(parkingService==null){
             synchronized (ParkingService.class){
                 if(parkingService==null)
@@ -38,8 +40,8 @@ public class ParkingService {
             System.out.println(e.getMessage());
         }
         catch (Exception e){
-            //System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
-e.printStackTrace();;
+            System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
+
         }
     }
 
@@ -55,8 +57,8 @@ e.printStackTrace();;
             System.out.println(e.getMessage());
         }
         catch (Exception e){
-            //System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
-e.printStackTrace();;
+            System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
+
         }
     }
 
@@ -69,8 +71,8 @@ e.printStackTrace();;
             System.out.println(e.getMessage());
         }
         catch (Exception e){
-            //System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
-e.printStackTrace();;
+            System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
+
         }
     }
 
@@ -86,8 +88,8 @@ e.printStackTrace();;
             System.out.println(e.getMessage());
         }
         catch (Exception e){
-            //System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
-e.printStackTrace();;
+            System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
+
         }
     }
 
@@ -100,8 +102,8 @@ e.printStackTrace();;
             System.out.println(e.getMessage());
         }
         catch (Exception e){
-            //System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
-e.printStackTrace();;
+            System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
+
         }
     }
 
@@ -120,8 +122,8 @@ e.printStackTrace();;
             System.out.println(e.getMessage());
         }
         catch (Exception e){
-            //System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
-e.printStackTrace();;
+            System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
+
         }
     }
 
@@ -140,8 +142,8 @@ e.printStackTrace();;
             System.out.println(e.getMessage());
         }
             catch (Exception e){
-            //System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
-e.printStackTrace();;
+            System.out.println(Constants.OPPS_SOMETHING_WENT_WRONG);
+
         }
     }
 

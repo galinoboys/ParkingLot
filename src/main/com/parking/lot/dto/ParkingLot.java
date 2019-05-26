@@ -25,7 +25,7 @@ public class ParkingLot {
         this.noOfFloors = noOfFloors;
         this.noOfGates = noOfGates;
         parkingFloors = new ArrayList<>(noOfFloors);
-        vehicleData = new VehicleData();
+        vehicleData = VehicleData.getInstance();
         parkingLotValidator = new ParkingLotValidator();
         parkingTicketData = ParkingTicketData.getInstance();
         for (int i = 0; i < noOfFloors; i++) {
