@@ -1,9 +1,26 @@
 package com.parking.lot.validator;
 
+import com.parking.lot.dto.ParkingLot;
 import com.parking.lot.exception.ParkingLotException;
+import com.parking.lot.service.ParkingService;
 import com.parking.lot.utils.Constants;
 
 public class ParkingLotValidator {
+
+    private static ParkingLotValidator parkingLotValidator;
+
+    public static ParkingLotValidator getInstance(){
+        if(parkingLotValidator==null){
+            synchronized (ParkingLotValidator.class){
+                if(parkingLotValidator==null)
+                    parkingLotValidator = new ParkingLotValidator();
+            }
+        }
+        return parkingLotValidator;
+    }
+
+    private ParkingLotValidator() {
+    }
 
     public static void validateParkingLotInitializationFactor(int noOfFloors, int length, int width, int noOfGates) {
         if(noOfFloors<Constants.MINIMUM_NO_OF_FLOOR_ALLOWED || noOfFloors>Constants.MAXIMUM_NO_OF_FLOOR_ALLOWED)

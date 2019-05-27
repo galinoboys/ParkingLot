@@ -6,6 +6,21 @@ import com.parking.lot.handler.EntryGateParkingHandler;
 
 public class NorthGateParkingHandler extends EntryGateParkingHandler {
 
+    private static NorthGateParkingHandler singeltonObject;
+
+    public static NorthGateParkingHandler getInstance(){
+        if(singeltonObject ==null){
+            synchronized (NorthGateParkingHandler.class){
+                if(singeltonObject ==null)
+                    singeltonObject = new NorthGateParkingHandler();
+            }
+        }
+        return singeltonObject;
+    }
+
+    private NorthGateParkingHandler() {
+    }
+
     @Override
     public ParkingSlot park(ParkingSlot[][] parkingSlots, Vehicle vehicle, int length, int width) {
         int maxDistance = length+(width-1)/2-1;

@@ -3,6 +3,7 @@ package com.parking.lot.dto;
 import com.parking.lot.dao.ParkingTicketData;
 import com.parking.lot.dao.VehicleData;
 import com.parking.lot.exception.ParkingLotException;
+import com.parking.lot.service.ParkingService;
 import com.parking.lot.utils.Constants;
 import com.parking.lot.utils.Util;
 import com.parking.lot.validator.ParkingLotValidator;
@@ -14,6 +15,8 @@ import java.util.Optional;
 
 public class ParkingLot {
 
+    private static ParkingLot parkingLot;
+
     private final int noOfFloors;
     private final int noOfGates;
     private List<ParkingFloor> parkingFloors;
@@ -21,12 +24,23 @@ public class ParkingLot {
     private ParkingLotValidator parkingLotValidator;
     private ParkingTicketData parkingTicketData;
 
-    public ParkingLot(int noOfFloors, int length, int width, int noOfGates){
+    public static ParkingLot getInstance(int noOfFloors, int length, int width, int noOfGates){
+        ParkingLotValidator.validateParkingLotInitializationFactor(noOfFloors, length, width, noOfGates);
+        if(parkingLot==null){
+            synchronized (ParkingLot.class){
+                if(parkingLot==null)
+                    parkingLot = new ParkingLot(noOfFloors, length, width, noOfGates);
+            }
+        }
+        return parkingLot;
+    }
+
+    private ParkingLot(int noOfFloors, int length, int width, int noOfGates){
         this.noOfFloors = noOfFloors;
         this.noOfGates = noOfGates;
         parkingFloors = new ArrayList<>(noOfFloors);
         vehicleData = VehicleData.getInstance();
-        parkingLotValidator = new ParkingLotValidator();
+        parkingLotValidator = ParkingLotValidator.getInstance();
         parkingTicketData = ParkingTicketData.getInstance();
         for (int i = 0; i < noOfFloors; i++) {
             parkingFloors.add(new ParkingFloor(i, length, width, noOfGates));

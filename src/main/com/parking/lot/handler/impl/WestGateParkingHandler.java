@@ -8,6 +8,21 @@ import java.util.TreeSet;
 
 public class WestGateParkingHandler extends EntryGateParkingHandler {
 
+    private static WestGateParkingHandler singeltonObject;
+
+    public static WestGateParkingHandler getInstance(){
+        if(singeltonObject ==null){
+            synchronized (WestGateParkingHandler.class){
+                if(singeltonObject ==null)
+                    singeltonObject = new WestGateParkingHandler();
+            }
+        }
+        return singeltonObject;
+    }
+
+    private WestGateParkingHandler() {
+    }
+
     @Override
     public ParkingSlot park(ParkingSlot[][] parkingSlots, Vehicle vehicle, int length, int width) {
         int maxDistance = (length-1)/2 +width-1;

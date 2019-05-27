@@ -38,7 +38,7 @@ public class ParkingFloor {
         for (int i = 0; i < noOfGates; i++) {
             entryGates[i] = new EntryGate(i+1, this.length, this.width);
         }
-        factory = new EntryGateHandlerFactory();
+        factory = EntryGateHandlerFactory.getInstance();
     }
 
     public boolean isFull() {

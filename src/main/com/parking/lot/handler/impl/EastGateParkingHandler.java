@@ -2,11 +2,27 @@ package com.parking.lot.handler.impl;
 
 import com.parking.lot.dto.ParkingSlot;
 import com.parking.lot.dto.Vehicle;
+import com.parking.lot.factory.EntryGateHandlerFactory;
 import com.parking.lot.handler.EntryGateParkingHandler;
 
 import java.util.TreeSet;
 
 public class EastGateParkingHandler extends EntryGateParkingHandler {
+
+    private static EastGateParkingHandler singeltonObject;
+
+    public static EastGateParkingHandler getInstance(){
+        if(singeltonObject ==null){
+            synchronized (EastGateParkingHandler.class){
+                if(singeltonObject ==null)
+                    singeltonObject = new EastGateParkingHandler();
+            }
+        }
+        return singeltonObject;
+    }
+
+    private EastGateParkingHandler() {
+    }
 
     @Override
     public ParkingSlot park(ParkingSlot[][] parkingSlots, Vehicle vehicle, int length, int width) {
