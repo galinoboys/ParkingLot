@@ -1,10 +1,8 @@
 package com.parking.lot.dao;
 
-import com.parking.lot.dto.ParkingLot;
 import com.parking.lot.dto.ParkingSlot;
 import com.parking.lot.dto.ParkingTicket;
 import com.parking.lot.dto.Vehicle;
-import com.parking.lot.service.ParkingService;
 
 import java.util.*;
 

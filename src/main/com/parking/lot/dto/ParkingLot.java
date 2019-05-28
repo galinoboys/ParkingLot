@@ -3,7 +3,6 @@ package com.parking.lot.dto;
 import com.parking.lot.dao.ParkingTicketData;
 import com.parking.lot.dao.VehicleData;
 import com.parking.lot.exception.ParkingLotException;
-import com.parking.lot.service.ParkingService;
 import com.parking.lot.utils.Constants;
 import com.parking.lot.utils.Util;
 import com.parking.lot.validator.ParkingLotValidator;

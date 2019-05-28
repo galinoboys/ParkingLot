@@ -1,8 +1,6 @@
 package com.parking.lot.validator;
 
-import com.parking.lot.dto.ParkingLot;
 import com.parking.lot.exception.ParkingLotException;
-import com.parking.lot.service.ParkingService;
 import com.parking.lot.utils.Constants;
 
 public class ParkingLotValidator {

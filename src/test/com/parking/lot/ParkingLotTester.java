@@ -1,16 +1,16 @@
 package com.parking.lot;
 
-import com.parking.lot.service.ParkingService;
+import com.parking.lot.service.impl.ParkingServiceImpl;
 
 import java.util.Random;
 
 public class ParkingLotTester {
 
-    private static ParkingService parkingService;
+    private static ParkingServiceImpl parkingService;
 
     public static void main(String[] args) {
 
-        parkingService = ParkingService.getInstance(2, 8, 8, 4);
+        parkingService = ParkingServiceImpl.getInstance(2, 8, 8, 4);
         Random random = new Random();
         String prefix = "KA-01-HH-";
         String[] colourArray = {"WHITE","Brown","Red","Blue","Grey"};
