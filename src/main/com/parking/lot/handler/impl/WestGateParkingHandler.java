@@ -26,7 +26,7 @@ public class WestGateParkingHandler extends EntryGateParkingHandler {
     @Override
     public ParkingSlot park(ParkingSlot[][] parkingSlots, Vehicle vehicle, int length, int width) {
         int maxDistance = (length-1)/2 +width-1;
-        if(isDoubleInitialPoint(width)){
+        if(isDoubleInitialPoint(length)){
             return handleWithDoubleInitialPoint(parkingSlots, vehicle, length, width, maxDistance);
         }
         else {
